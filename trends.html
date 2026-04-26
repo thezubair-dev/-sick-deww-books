@@ -3,26 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ummah Trends | By ZUBAIR</title>
+    <title>Trends | Signals</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: white; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; }
+        .card-container { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-container:hover { transform: translateY(-5px) scale(1.01); }
     </style>
 </head>
-<body class="p-12">
-    <a href="index.html" class="text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100">← Back Home</a>
-    <header class="mt-20 mb-20">
-        <h1 class="text-5xl font-black uppercase tracking-tighter mb-4">Ummah Trends</h1>
-        <p class="text-emerald-500 uppercase tracking-widest text-[10px] font-bold italic">Weekly Pulse of the Muslim World</p>
+<body class="p-8 md:p-16">
+
+    <header class="max-w-7xl mx-auto mb-16">
+        <h1 class="text-4xl font-black uppercase tracking-tighter italic">Signals — Week 01</h1>
     </header>
-    <div class="max-w-5xl mx-auto">
-        <div class="glass p-12 rounded-[3rem] h-96 flex items-end bg-gradient-to-t from-emerald-950/30 to-transparent">
-            <div>
-                <span class="bg-emerald-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">New Trend</span>
-                <h2 class="text-4xl font-black mt-4">The rise of digital revivalists in the West.</h2>
-            </div>
+
+    <main class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <a href="https://share.google/a46Vkn6bUiWQ7rbFq" target="_blank" class="card-container block group">
+                <div class="bg-white/5 border border-white/10 p-5 rounded-2xl h-full">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/book.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
+                    <p class="text-xs uppercase tracking-widest text-emerald-400 mb-2">Books</p>
+                    <h3 class="text-xl font-bold mb-2">Islamic Thought Revival</h3>
+                    <p class="text-sm opacity-60">Understanding thought before engaging the world.</p>
+                </div>
+            </a>
+
+            <a href="https://youtube.com/watch?v=VFeY4sHGc-c" target="_blank" class="card-container block group">
+                <div class="bg-white/5 border border-white/10 p-5 rounded-2xl h-full">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/nasheed.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
+                    <p class="text-xs uppercase tracking-widest text-emerald-400 mb-2">Nasheed</p>
+                    <h3 class="text-xl font-bold mb-2">ذکر جهانی | کربلایی حسین ستوده | Hossein Sotoodeh</h3>
+                    <p class="text-sm opacity-60">What people listen to reflects what they are becoming.</p>
+                </div>
+            </a>
+
+            <a href="https://youtu.be/uVDJ5mkZXuw" target="_blank" class="card-container block group">
+                <div class="bg-white/5 border border-white/10 p-5 rounded-2xl h-full">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/debate.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
+                    <p class="text-xs uppercase tracking-widest text-emerald-400 mb-2">Debate</p>
+                    <h3 class="text-xl font-bold mb-2">Sahil Adeem, Qaiser Ahmed Raja, Maria B | 6 Hours Heated Debate | LGBTQ</h3>
+                    <p class="text-sm opacity-60">The real battle today is intellectual.</p>
+                </div>
+            </a>
+
+            <a href="https://youtu.be/vdh0IAqWXZg" target="_blank" class="card-container block group">
+                <div class="bg-white/5 border border-white/10 p-5 rounded-2xl h-full">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/bayaan.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
+                    <p class="text-xs uppercase tracking-widest text-emerald-400 mb-2">Bayan</p>
+                    <h3 class="text-xl font-bold mb-2">Kisi Bhi Cheez Ki Jyada Fikar Mat Karo. | Mufti Tariq Masood</h3>
+                    <p class="text-sm opacity-60">A reminder of direction and purpose.</p>
+                </div>
+            </a>
+
+            <a href="https://youtu.be/xESGtMNIhls" target="_blank" class="card-container block group">
+                <div class="bg-white/5 border border-white/10 p-5 rounded-2xl h-full">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/documentray.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
+                    <p class="text-xs uppercase tracking-widest text-emerald-400 mb-2">Documentary</p>
+                    <h3 class="text-xl font-bold mb-2">4th Khalifa of Islam ... ALIؓ</h3>
+                    <p class="text-sm opacity-60">To understand the Ummah, you must see its reality.</p>
+                </div>
+            </a>
+
         </div>
-    </div>
+    </main>
+
 </body>
 </html>
