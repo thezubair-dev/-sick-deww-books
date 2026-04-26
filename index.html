@@ -3,92 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guides | By ZUBAIR</title>
+    <title>By ZUBAIR | Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:italic&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
-        .glass:hover { border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.04); }
-        .level-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; }
+        body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top right, #064e3b 0%, #0a0a0a 45%); background-color: #0a0a0a; color: white; min-height: 100vh; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .hover-scale { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hover-scale:hover { transform: translateY(-10px); border-color: rgba(16, 185, 129, 0.5); }
     </style>
 </head>
-<body class="p-6 md:p-16">
-
-    <nav class="max-w-5xl mx-auto mb-16">
-        <a href="index.html" class="text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity flex items-center gap-2">
-            <span>←</span> Back to Archive
-        </a>
+<body class="p-6 md:p-12">
+    <nav class="flex justify-between items-center mb-20">
+        <h1 class="text-2xl font-black tracking-tighter uppercase">By ZUBAIR.</h1>
+        <div class="space-x-8 text-[10px] uppercase tracking-[0.3em] font-bold">
+            <a href="guides.html" class="hover:text-emerald-400 transition-colors">Guides</a>
+            <a href="trends.html" class="hover:text-emerald-400 transition-colors">Ummah Trends</a>
+        </div>
     </nav>
 
-    <header class="max-w-5xl mx-auto mb-24">
-        <h1 class="text-5xl md:text-7xl font-black tracking-tighter uppercase mb-6">Islamic<br><span class="text-emerald-500">Philosophers.</span></h1>
-        <p class="max-w-xl opacity-50 text-sm leading-relaxed">
-            A structured roadmap through the intellectual heritage of the Ummah. From the spiritual foundations of the heart to the complex metaphysics of the masters.
+    <section class="max-w-4xl mx-auto mb-32 text-center pt-10">
+        <p class="font-serif text-4xl md:text-6xl italic text-white leading-tight mb-8">
+            "The heart is like a vessel: if you do not fill it with truth, it will be filled with falsehood."
         </p>
-    </header>
+        <p class="text-emerald-500 uppercase tracking-[0.3em] text-xs font-bold">— Ibn al-Qayyim</p>
+    </section>
 
-    <div class="max-w-5xl mx-auto space-y-8">
-        
-        <div class="glass p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden group">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                <span class="level-badge bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">🔰 Level: Beginner</span>
-                <span class="text-[10px] opacity-30 font-bold uppercase tracking-widest italic">Foundational Clarity</span>
-            </div>
-            <ul class="space-y-6 text-lg md:text-xl font-bold tracking-tight">
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform">
-                    <span class="text-emerald-500 opacity-40">01</span> Ghazali – Deliverance from Error
-                </li>
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform delay-75">
-                    <span class="text-emerald-500 opacity-40">02</span> Ghazali – Beginning of Guidance
-                </li>
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform delay-150">
-                    <span class="text-emerald-500 opacity-40">03</span> Shah Waliullah – Hujjat Allah al-Baligha
-                </li>
-            </ul>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="glass p-10 rounded-[2.5rem] hover-scale relative overflow-hidden border-t-4 border-emerald-500">
+            <h2 class="text-4xl font-extrabold mb-4">Muskan Kyu Baagi</h2>
+            <p class="opacity-50 text-sm mb-8">Social politics and the journey of the soul.</p>
+            <a href="muskan-kyu-baagi.pdf" download class="block text-center bg-white text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-emerald-400">Download PDF</a>
         </div>
-
-        <div class="glass p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden group">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                <span class="level-badge bg-amber-500/10 text-amber-500 border border-amber-500/20">⚙️ Level: Intermediate</span>
-                <span class="text-[10px] opacity-30 font-bold uppercase tracking-widest italic">Critical Analysis</span>
-            </div>
-            <ul class="space-y-6 text-lg md:text-xl font-bold tracking-tight">
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform">
-                    <span class="text-amber-500 opacity-40">01</span> Ghazali – Moderation in Belief
-                </li>
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform delay-75">
-                    <span class="text-amber-500 opacity-40">02</span> Ibn Taymiyyah – Refutation of the Logicians
-                </li>
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform delay-150">
-                    <span class="text-amber-500 opacity-40">03</span> Selected Ihya (Revival of Religious Sciences)
-                </li>
-            </ul>
+        <div class="glass p-10 rounded-[2.5rem] hover-scale relative overflow-hidden border-t-4 border-amber-600">
+            <h2 class="text-4xl font-extrabold mb-4">Quran of Shaytan</h2>
+            <p class="opacity-50 text-sm mb-8">Addressing misconceptions in the modern world.</p>
+            <a href="quran-of-shaytan.pdf" download class="block text-center bg-white text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-amber-400">Download PDF</a>
         </div>
-
-        <div class="glass p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden group">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-                <span class="level-badge bg-violet-500/10 text-violet-400 border border-violet-500/20">🧠 Level: Advanced</span>
-                <span class="text-[10px] opacity-30 font-bold uppercase tracking-widest italic">Pure Metaphysics</span>
-            </div>
-            <ul class="space-y-6 text-lg md:text-xl font-bold tracking-tight">
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform">
-                    <span class="text-violet-500 opacity-40">01</span> Ibn Sina – Metaphysics (Al-Ilahiyat)
-                </li>
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform delay-75">
-                    <span class="text-violet-500 opacity-40">02</span> Ibn Rushd – Incoherence of the Incoherence
-                </li>
-                <li class="flex items-center gap-4 group-hover:translate-x-2 transition-transform delay-150">
-                    <span class="text-violet-500 opacity-40">03</span> Fakhr al-Din al-Razi (Advanced Dialectics)
-                </li>
-            </ul>
-        </div>
-
     </div>
 
-    <footer class="mt-32 text-center opacity-20 text-[10px] uppercase font-black tracking-[0.5em]">
-        By Zubair | Intellectual Heritage Archive 2026
+    <footer class="mt-40 text-center border-t border-white/5 pt-10">
+        <a href="https://www.youtube.com/@sickdeww" target="_blank" class="text-[10px] tracking-[0.4em] uppercase font-bold opacity-40 hover:opacity-100 hover:text-red-500 transition-all">YouTube: @sickdeww</a>
     </footer>
-
 </body>
 </html>
