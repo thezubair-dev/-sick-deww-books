@@ -1,0 +1,70 @@
+<!-- index.html (Homepage) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sick Deww</title>
+  <style>
+    body {font-family: Arial; margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#0f172a; color:white; text-align:center;}
+    .container {max-width:400px;}
+    button {padding:12px 20px; border:none; border-radius:8px; background:#22c55e; color:white; cursor:pointer;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sick Deww</h1>
+    <p>Learn from the best</p>
+    <img src="https://via.placeholder.com/200x250" alt="Book" />
+    <br><br>
+    <button onclick="goToForm()">Download Book</button>
+  </div>
+
+  <script>
+    function goToForm(){
+      window.location.href = "form.html";
+    }
+  </script>
+</body>
+</html>
+
+
+<!-- form.html (Form Page) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Book</title>
+  <style>
+    body {font-family: Arial; margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#020617; color:white; text-align:center;}
+    .container {max-width:400px;}
+    input {display:block; width:100%; padding:10px; margin:10px 0; border-radius:6px; border:none;}
+    button {padding:12px 20px; border:none; border-radius:8px; background:#3b82f6; color:white; cursor:pointer;}
+    #download {display:none; margin-top:20px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Enter Details</h2>
+    <form onsubmit="showDownload(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="download">
+      <a href="book.pdf" target="_blank">
+        <button>Download PDF</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function showDownload(e){
+      e.preventDefault();
+      document.getElementById('download').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
