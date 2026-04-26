@@ -12,52 +12,39 @@
         .glass:hover { transform: translateY(-5px); border-color: rgba(16, 185, 129, 0.4); background: rgba(255, 255, 255, 0.04); }
         .hidden-content { display: none; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
         .show-content { display: block; opacity: 1; transform: translateY(0); }
-        .level-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; }
-
-        /* Updated Stop Button Styles */
-        .stop-btn-container {
+        
+        /* Fixed Stop Button - Forced Visibility via z-index */
+        #stopContainer {
             position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 9999;
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .stop-btn-active {
-            visibility: visible !important;
-            opacity: 1 !important;
+            top: 20px;
+            right: 20px;
+            z-index: 99999;
+            display: none; /* Controlled by JS */
         }
 
         .stop-btn-ui {
-            padding: 12px 20px;
+            padding: 12px 24px;
             border-radius: 99px;
             font-size: 10px;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.2em;
-            background: rgba(239, 68, 68, 0.1);
+            letter-spacing: 0.15em;
+            background: rgba(239, 68, 68, 0.15);
             color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            backdrop-filter: blur(15px);
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
         }
 
-        .stop-btn-ui:hover {
-            background: #ef4444;
-            color: white;
-        }
+        .stop-btn-ui:hover { background: #ef4444; color: white; transform: scale(1.05); }
 
         .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #ef4444;
-            border-radius: 50%;
+            width: 8px; height: 8px; background-color: #ef4444; border-radius: 50%;
             animation: pulse 1.5s infinite;
         }
 
@@ -70,7 +57,7 @@
 </head>
 <body class="p-6 md:p-16">
 
-    <div id="stopContainer" class="stop-btn-container">
+    <div id="stopContainer">
         <button onclick="stopMusic()" class="stop-btn-ui">
             <div class="pulse-dot"></div>
             Stop Audio
@@ -78,51 +65,36 @@
     </div>
 
     <nav class="max-w-6xl mx-auto mb-16">
-        <a href="index.html" class="text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 flex items-center gap-2">
-            <span>←</span> Back to Archive
-        </a>
+        <a href="index.html" class="text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 flex items-center gap-2">← Back</a>
     </nav>
 
     <div id="selection-menu" class="max-w-6xl mx-auto">
         <header class="mb-20">
-            <h1 class="text-5xl font-black tracking-tighter uppercase mb-4">Select <span class="text-emerald-500">Path.</span></h1>
-            <p class="opacity-40 text-sm tracking-widest uppercase">Click a path to begin your journey</p>
+            <h1 class="text-5xl font-black uppercase mb-4">Select <span class="text-emerald-500">Path.</span></h1>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div onclick="startJourney()" class="glass p-12 rounded-[3rem] cursor-pointer group relative overflow-hidden h-80 flex flex-col justify-between">
-                <div class="text-emerald-500 opacity-20 group-hover:opacity-100 transition-opacity">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                </div>
-                <div>
-                    <h2 class="text-3xl font-black uppercase tracking-tight mb-2">Islamic Philosophers</h2>
-                    <p class="text-xs opacity-50 uppercase tracking-widest">3 Levels of Mastery • Ghazali to Ibn Sina</p>
-                </div>
+            <div onclick="startJourney()" class="glass p-12 rounded-[3rem] cursor-pointer group h-80 flex flex-col justify-between">
+                <h2 class="text-3xl font-black uppercase tracking-tight mb-2">Islamic Philosophers</h2>
+                <p class="text-xs opacity-50 uppercase tracking-widest">3 Levels of Mastery</p>
             </div>
-
-            <div class="glass p-12 rounded-[3rem] opacity-30 cursor-not-allowed h-80 flex items-center justify-center">
-                <h2 class="text-2xl font-black uppercase opacity-20">More Coming Soon</h2>
+            <div class="glass p-12 rounded-[3rem] opacity-20 h-80 flex items-center justify-center">
+                <p class="uppercase font-black tracking-widest">Coming Soon</p>
             </div>
         </div>
     </div>
 
     <div id="levels-content" class="hidden-content max-w-5xl mx-auto pt-10">
-        <button onclick="hideLevels()" class="mb-12 text-[10px] font-bold uppercase tracking-widest text-emerald-500 border border-emerald-500/30 px-6 py-2 rounded-full hover:bg-emerald-500 hover:text-black transition-all">
-            ↑ Close Path
-        </button>
-
-        <h2 class="text-4xl font-black uppercase mb-16 tracking-tighter">Path: <span class="text-emerald-500">Islamic Philosophers</span></h2>
-
+        <button onclick="hideLevels()" class="mb-12 text-[10px] font-bold uppercase tracking-widest text-emerald-500 border border-emerald-500/30 px-6 py-2 rounded-full">↑ Close Path</button>
         <div class="space-y-8">
-            <div class="glass p-8 md:p-12 rounded-[2.5rem] border-l-4 border-emerald-500">
-                <span class="level-badge bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 mb-6 inline-block">🔰 Beginner</span>
-                <ul class="space-y-4 font-bold text-lg">
-                    <li>1. Ghazali – Deliverance from Error</li>
-                    <li>2. Ghazali – Beginning of Guidance</li>
-                    <li>3. Shah Waliullah – Hujjat Allah al-Baligha</li>
+            <div class="glass p-8 rounded-[2.5rem] border-l-4 border-emerald-500">
+                <h3 class="font-black text-xl mb-4 text-emerald-500 uppercase">🔰 Beginner</h3>
+                <ul class="space-y-2 opacity-80 font-bold">
+                    <li>Ghazali – Deliverance from Error</li>
+                    <li>Ghazali – Beginning of Guidance</li>
                 </ul>
             </div>
-            </div>
+        </div>
     </div>
 
     <audio id="modudiAudio" preload="auto" crossorigin="anonymous" loop>
@@ -131,38 +103,36 @@
 
     <script>
         const audio = document.getElementById('modudiAudio');
-        const selectionMenu = document.getElementById('selection-menu');
-        const levelsContent = document.getElementById('levels-content');
         const stopContainer = document.getElementById('stopContainer');
 
         function startJourney() {
-            // Attempt to play audio
-            audio.play().then(() => {
-                // Show stop button only if audio actually starts
-                stopContainer.classList.add('stop-btn-active');
-            }).catch(e => {
-                console.log("Audio failed to play:", e);
+            // 1. Force the button to show IMMEDIATELY
+            stopContainer.style.display = 'block';
+
+            // 2. Attempt to play
+            audio.play().catch(e => {
+                console.log("Audio failed to play, but button is visible.");
             });
 
-            // Transition UI
-            selectionMenu.style.display = 'none';
-            levelsContent.classList.add('show-content');
+            // 3. Switch UI
+            document.getElementById('selection-menu').style.display = 'none';
+            document.getElementById('levels-content').classList.add('show-content');
             window.scrollTo(0, 0);
         }
 
         function stopMusic() {
             audio.pause();
             audio.currentTime = 0;
-            // Hide stop button
-            stopContainer.classList.remove('stop-btn-active');
+            stopContainer.style.display = 'none';
         }
 
         function hideLevels() {
-            selectionMenu.style.display = 'block';
-            levelsContent.classList.remove('show-content');
+            document.getElementById('selection-menu').style.display = 'block';
+            document.getElementById('levels-content').classList.remove('show-content');
         }
 
-        window.addEventListener('load', () => { audio.load(); });
+        // Preload on load
+        window.onload = () => { audio.load(); };
     </script>
 </body>
 </html>
