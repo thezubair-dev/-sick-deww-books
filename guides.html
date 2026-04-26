@@ -26,23 +26,10 @@
             box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
         }
 
-        /* HOVER EFFECTS FOR LEVELS */
-        .level-beginner:hover {
+        /* COMPACT HOVER EFFECTS */
+        .level-card:hover {
             transform: translateY(-5px);
-            border-color: #10b981;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
-        }
-
-        .level-intermediate:hover {
-            transform: translateY(-8px) scale(1.01);
-            border-color: #f59e0b;
-            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.15);
-        }
-
-        .level-advanced:hover {
-            transform: translateY(-12px) scale(1.02);
-            border-color: #8b5cf6;
-            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.25);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
         }
 
         #stopBtn {
@@ -64,60 +51,63 @@
         }
     </style>
 </head>
-<body class="p-6 md:p-16">
+<body class="p-6 md:p-12">
 
     <button id="stopBtn" onclick="stopAudio()">Stop Audio</button>
 
-    <nav class="max-w-6xl mx-auto mb-16">
+    <nav class="max-w-6xl mx-auto mb-10">
         <a href="index.html" class="opacity-40 hover:opacity-100 text-[10px] uppercase tracking-widest">← Back</a>
     </nav>
 
     <div id="selection-menu" class="max-w-6xl mx-auto">
-        <h1 class="text-5xl font-black uppercase mb-12">Select <span class="text-emerald-500">Path.</span></h1>
+        <h1 class="text-4xl font-black uppercase mb-8">Select <span class="text-emerald-500">Path.</span></h1>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div onclick="startJourney()" class="philosopher-card p-12 rounded-[3rem] cursor-pointer group h-80 flex flex-col justify-between transition-all duration-500">
-                <h2 class="text-3xl font-black uppercase leading-tight">Islamic <br> Philosophers</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div onclick="startJourney()" class="philosopher-card p-10 rounded-[2rem] cursor-pointer group h-64 flex flex-col justify-between transition-all duration-500">
+                <h2 class="text-2xl font-black uppercase leading-tight">Islamic <br> Philosophers</h2>
                 <div>
-                    <p class="text-xs opacity-80 font-bold uppercase tracking-widest text-emerald-400 mb-2">Ghazali to Ibn Sina</p>
-                    <div class="h-1 w-12 bg-emerald-500 rounded-full group-hover:w-24 transition-all duration-500"></div>
+                    <p class="text-[10px] opacity-80 font-bold uppercase tracking-widest text-emerald-400 mb-2">Ghazali to Ibn Sina</p>
+                    <div class="h-1 w-10 bg-emerald-500 rounded-full group-hover:w-20 transition-all duration-500"></div>
                 </div>
             </div>
             
-            <div class="glass p-12 rounded-[3rem] opacity-20 h-80 flex items-center justify-center font-black uppercase tracking-widest">Coming Soon</div>
+            <div class="glass p-10 rounded-[2rem] opacity-20 h-64 flex items-center justify-center font-black uppercase tracking-widest text-sm">Coming Soon</div>
         </div>
     </div>
 
-    <div id="levels-content" class="hidden-content max-w-5xl mx-auto pt-10">
-        <button onclick="hideLevels()" class="mb-12 text-[10px] font-bold uppercase tracking-widest text-emerald-500 border border-emerald-500/30 px-6 py-2 rounded-full hover:bg-emerald-500/10 transition-all">↑ Close Path</button>
-        
-        <h2 class="text-4xl font-black uppercase mb-10 tracking-tighter">Path: <span class="text-emerald-500">Islamic Philosophers</span></h2>
+    <div id="levels-content" class="hidden-content max-w-6xl mx-auto pt-4">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-black uppercase tracking-tighter">Path: <span class="text-emerald-500 text-xl">Islamic Philosophers</span></h2>
+            <button onclick="hideLevels()" class="text-[9px] font-bold uppercase tracking-widest text-emerald-500 border border-emerald-500/30 px-4 py-1.5 rounded-full hover:bg-emerald-500/10 transition-all">↑ Close</button>
+        </div>
 
-        <div class="glass level-beginner p-8 md:p-12 rounded-[2.5rem] border-l-4 border-emerald-500 mb-8 cursor-default">
-            <span class="text-[10px] font-black uppercase bg-emerald-500/10 text-emerald-500 px-3 py-1 rounded-full mb-4 inline-block">Beginner</span>
-            <ul class="space-y-4 font-bold text-lg opacity-90">
-                <li>1. Ghazali – Deliverance from Error</li>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="glass level-card p-6 rounded-2xl border-l-4 border-emerald-500 transition-all duration-300">
+                <span class="text-[9px] font-black uppercase bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded-md mb-3 inline-block">Beginner</span>
+                <ul class="space-y-2 font-medium text-sm opacity-90">
+                    <li>1. Ghazali – Deliverance from Error</li>
                 <li>2. Ghazali – Beginning of Guidance</li>
                 <li>3. Shah Waliullah – Hujjat Allah al-Baligha</li>
-            </ul>
-        </div>
+                </ul>
+            </div>
 
-        <div class="glass level-intermediate p-8 md:p-12 rounded-[2.5rem] border-l-4 border-amber-500 mb-8 cursor-default">
-            <span class="text-[10px] font-black uppercase bg-amber-500/10 text-amber-500 px-3 py-1 rounded-full mb-4 inline-block">Intermediate</span>
-            <ul class="space-y-4 font-bold text-lg opacity-90">
-                <li>1. Ghazali – Moderation in Belief</li>
+            <div class="glass level-card p-6 rounded-2xl border-l-4 border-amber-500 transition-all duration-300">
+                <span class="text-[9px] font-black uppercase bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded-md mb-3 inline-block">Intermediate</span>
+                <ul class="space-y-2 font-medium text-sm opacity-90">
+                     <li>1. Ghazali – Moderation in Belief</li>
                 <li>2. Ibn Taymiyyah – Refutation of the Logicians</li>
                 <li>3. Selected Ihya</li>
-            </ul>
-        </div>
+                </ul>
+            </div>
 
-        <div class="glass level-advanced p-8 md:p-12 rounded-[2.5rem] border-l-4 border-violet-500 cursor-default">
-            <span class="text-[10px] font-black uppercase bg-violet-500/10 text-violet-400 px-3 py-1 rounded-full mb-4 inline-block">Advanced</span>
-            <ul class="space-y-4 font-bold text-lg opacity-90">
+            <div class="glass level-card p-6 rounded-2xl border-l-4 border-violet-500 transition-all duration-300">
+                <span class="text-[9px] font-black uppercase bg-violet-500/10 text-violet-400 px-2 py-0.5 rounded-md mb-3 inline-block">Advanced</span>
+                <ul class="space-y-2 font-medium text-sm opacity-90">
                 <li>1. Ibn Sina – Metaphysics</li>
                 <li>2. Ibn Rushd – Incoherence of the Incoherence</li>
                 <li>3. Fakhr al-Din al-Razi</li>
-            </ul>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -133,10 +123,7 @@
 
         function startJourney() {
             stopBtn.style.display = 'block';
-            
-            // Audio check
             audio.play().catch(e => console.log("Interaction required for audio"));
-
             selectionMenu.style.display = 'none';
             levelsContent.classList.add('show-content');
             window.scrollTo(0, 0);
@@ -151,6 +138,8 @@
         function hideLevels() {
             selectionMenu.style.display = 'block';
             levelsContent.classList.remove('show-content');
+            stopBtn.style.display = 'none';
+            audio.pause();
         }
 
         window.onload = () => { audio.load(); };
