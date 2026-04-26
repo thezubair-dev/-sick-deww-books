@@ -6,14 +6,72 @@
     <title>Trends | Signals</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; }
-        .card-container { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card-container:hover { transform: translateY(-5px) scale(1.01); }
+        body { 
+            background-color: #050505; 
+            color: #ffffff; 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden; 
+            margin: 0;
+        }
+
+        /* --- Dynamic Spark Background --- */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(1px);
+            animation: drift linear infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translateY(110vh) translateX(0); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+        }
+
+        /* --- Card Styles --- */
+        .card-container { 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            position: relative;
+            z-index: 10;
+        }
+        .card-container:hover { 
+            transform: translateY(-5px) scale(1.01); 
+        }
     </style>
 </head>
 <body class="p-8 md:p-16">
 
-    <header class="max-w-7xl mx-auto mb-16">
+    <div class="bg-container" id="particle-container">
+        <script>
+            const container = document.getElementById('particle-container');
+            for (let i = 0; i < 40; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'particle';
+                const size = Math.random() * 3 + 1 + 'px';
+                dot.style.width = size;
+                dot.style.height = size;
+                dot.style.left = Math.random() * 100 + 'vw';
+                dot.style.animationDuration = Math.random() * 8 + 7 + 's';
+                dot.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(dot);
+            }
+        </script>
+    </div>
+
+    <header class="max-w-7xl mx-auto mb-16 relative z-10">
         <button onclick="history.back()" class="flex items-center text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors mb-6 group">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -26,7 +84,7 @@
         </h1>
     </header>
 
-    <main class="max-w-7xl mx-auto">
+    <main class="max-w-7xl mx-auto relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             <a href="https://share.google/a46Vkn6bUiWQ7rbFq" target="_blank" class="card-container block group">
@@ -42,7 +100,7 @@
                 <div class="bg-white/5 border border-white/10 p-5 rounded-2xl h-full">
                     <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/nasheed.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
                     <p class="text-xs uppercase tracking-widest text-emerald-400 mb-2">Nasheed</p>
-                    <h3 class="text-xl font-bold mb-2">ذکر جهانی | کربلایی حسین ستوده | Hossein Sotoodeh</h3>
+                    <h3 class="text-xl font-bold mb-2">ذکر جهانی | کربلایی حسین ستوده</h3>
                     <p class="text-sm opacity-60">What people listen to reflects what they are becoming.</p>
                 </div>
             </a>
@@ -51,7 +109,7 @@
                 <div class="bg-white/5 border border-white/10 p-5 rounded-2xl h-full">
                     <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/debate.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
                     <p class="text-xs uppercase tracking-widest text-emerald-400 mb-2">Debate</p>
-                    <h3 class="text-xl font-bold mb-2">Sahil Adeem, Qaiser Ahmed Raja, Maria B | 6 Hours Heated Debate | LGBTQ</h3>
+                    <h3 class="text-xl font-bold mb-2">6 Hours Heated Debate | LGBTQ</h3>
                     <p class="text-sm opacity-60">The real battle today is intellectual.</p>
                 </div>
             </a>
@@ -60,7 +118,7 @@
                 <div class="bg-white/5 border border-white/10 p-5 rounded-2xl h-full">
                     <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/bayaan.jpg" class="w-full h-40 object-cover rounded-xl mb-4">
                     <p class="text-xs uppercase tracking-widest text-emerald-400 mb-2">Bayan</p>
-                    <h3 class="text-xl font-bold mb-2">Kisi Bhi Cheez Ki Jyada Fikar Mat Karo. | Mufti Tariq Masood</h3>
+                    <h3 class="text-xl font-bold mb-2">Kisi Bhi Cheez Ki Jyada Fikar Mat Karo.</h3>
                     <p class="text-sm opacity-60">A reminder of direction and purpose.</p>
                 </div>
             </a>
