@@ -13,9 +13,38 @@
         .hidden-content { display: none; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
         .show-content { display: block; opacity: 1; transform: translateY(0); }
         .level-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; }
+
+        /* Floating Stop Button */
+        #stopAudioBtn {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 100;
+            padding: 10px 20px;
+            border-radius: 99px;
+            font-[900] text-[10px] uppercase tracking-widest;
+            display: none; /* Hidden until audio starts */
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        #stopAudioBtn:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
     </style>
 </head>
 <body class="p-6 md:p-16">
+
+    <button id="stopAudioBtn" onclick="stopMusic()">
+        <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+        Stop Audio
+    </button>
 
     <nav class="max-w-6xl mx-auto mb-16">
         <a href="index.html" class="text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 flex items-center gap-2">
@@ -43,9 +72,8 @@
                 <div class="absolute top-8 right-8 text-[10px] font-black uppercase opacity-20 group-hover:opacity-100 tracking-[0.2em]">Start Journey</div>
             </div>
 
-            <div class="glass p-12 rounded-[3rem] opacity-30 cursor-not-allowed h-80 flex flex-col justify-center items-center text-center">
-                <h2 class="text-2xl font-black uppercase tracking-[0.3em]">More Coming Soon</h2>
-                <p class="text-[10px] uppercase mt-4 tracking-widest">New paths being curated</p>
+            <div class="glass p-12 rounded-[3rem] opacity-30 cursor-not-allowed h-80 flex items-center justify-center">
+                <h2 class="text-2xl font-black uppercase opacity-20">More Coming Soon</h2>
             </div>
         </div>
     </div>
@@ -55,11 +83,6 @@
             <button onclick="hideLevels()" class="text-[10px] font-bold uppercase tracking-widest text-emerald-500 border border-emerald-500/30 px-6 py-2 rounded-full hover:bg-emerald-500 hover:text-black transition-all">
                 ↑ Close Path
             </button>
-            <div id="audioVisualizer" class="flex items-end gap-1 h-4">
-                <div class="w-1 bg-emerald-500 animate-[bounce_1s_infinite]"></div>
-                <div class="w-1 bg-emerald-500 animate-[bounce_0.7s_infinite]"></div>
-                <div class="w-1 bg-emerald-500 animate-[bounce_1.3s_infinite]"></div>
-            </div>
         </div>
 
         <h2 class="text-4xl font-black uppercase mb-16 tracking-tighter">Path: <span class="text-emerald-500">Islamic Philosophers</span></h2>
@@ -68,60 +91,41 @@
             <div class="glass p-8 md:p-12 rounded-[2.5rem] border-l-4 border-emerald-500">
                 <span class="level-badge bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 mb-6 inline-block">🔰 Beginner</span>
                 <ul class="space-y-4 font-bold text-lg">
-                    <li class="opacity-80 hover:opacity-100 transition-opacity">1. Ghazali – Deliverance from Error</li>
-                    <li class="opacity-80 hover:hover:opacity-100 transition-opacity">2. Ghazali – Beginning of Guidance</li>
-                    <li class="opacity-80 hover:hover:opacity-100 transition-opacity">3. Shah Waliullah – Hujjat Allah al-Baligha</li>
+                    <li>1. Ghazali – Deliverance from Error</li>
+                    <li>2. Ghazali – Beginning of Guidance</li>
+                    <li>3. Shah Waliullah – Hujjat Allah al-Baligha</li>
                 </ul>
             </div>
-
-            <div class="glass p-8 md:p-12 rounded-[2.5rem] border-l-4 border-amber-500">
-                <span class="level-badge bg-amber-500/10 text-amber-500 border border-amber-500/20 mb-6 inline-block">⚙️ Intermediate</span>
-                <ul class="space-y-4 font-bold text-lg">
-                    <li class="opacity-80 hover:opacity-100 transition-opacity">1. Ghazali – Moderation in Belief</li>
-                    <li class="opacity-80 hover:opacity-100 transition-opacity">2. Ibn Taymiyyah – Refutation of the Logicians</li>
-                    <li class="opacity-80 hover:opacity-100 transition-opacity">3. Selected Ihya</li>
-                </ul>
             </div>
-
-            <div class="glass p-8 md:p-12 rounded-[2.5rem] border-l-4 border-violet-500">
-                <span class="level-badge bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-6 inline-block">🧠 Advanced</span>
-                <ul class="space-y-4 font-bold text-lg">
-                    <li class="opacity-80 hover:opacity-100 transition-opacity">1. Ibn Sina – Metaphysics</li>
-                    <li class="opacity-80 hover:opacity-100 transition-opacity">2. Ibn Rushd – Incoherence of the Incoherence</li>
-                    <li class="opacity-80 hover:opacity-100 transition-opacity">3. Fakhr al-Din al-Razi</li>
-                </ul>
-            </div>
-        </div>
     </div>
 
     <audio id="modudiAudio" preload="auto" crossorigin="anonymous" loop>
         <source src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/modudi.mp3.mpeg" type="audio/mpeg">
-        <source src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/modudi.mp3.mpeg" type="audio/mp3">
     </audio>
 
     <script>
         const audio = document.getElementById('modudiAudio');
         const selectionMenu = document.getElementById('selection-menu');
         const levelsContent = document.getElementById('levels-content');
+        const stopBtn = document.getElementById('stopAudioBtn');
 
-        // Function triggered when selection box is clicked
         function startJourney() {
-            // Attempt audio playback
-            // Laptop browsers require this to be directly in the click handler
-            const playPromise = audio.play();
+            // Start Audio
+            audio.play().then(() => {
+                // Show the stop button only after audio starts successfully
+                stopBtn.style.display = 'flex';
+            }).catch(e => console.log("Audio play failed:", e));
 
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    console.log("Audio started successfully on laptop/mobile");
-                }).catch(error => {
-                    console.log("Audio blocked by browser settings:", error);
-                });
-            }
-
-            // UI Transition
+            // Change View
             selectionMenu.style.display = 'none';
             levelsContent.classList.add('show-content');
             window.scrollTo(0, 0);
+        }
+
+        function stopMusic() {
+            audio.pause();
+            audio.currentTime = 0; // Resets to beginning
+            stopBtn.style.display = 'none'; // Hide button again
         }
 
         function hideLevels() {
@@ -129,10 +133,7 @@
             levelsContent.classList.remove('show-content');
         }
 
-        // Diagnostic: Force load audio on page load to be ready
-        window.addEventListener('load', () => {
-            audio.load();
-        });
+        window.addEventListener('load', () => { audio.load(); });
     </script>
 
 </body>
