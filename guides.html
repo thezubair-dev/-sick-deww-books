@@ -8,177 +8,103 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .glass:hover { transform: translateY(-5px); border-color: rgba(16, 185, 129, 0.4); background: rgba(255, 255, 255, 0.04); }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s ease; }
         .hidden-content { display: none; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
         .show-content { display: block; opacity: 1; transform: translateY(0); }
-        .level-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; }
-
-        /* Audio Suggestion Popup Styles */
+        
         #audioPopup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -40%);
-            z-index: 2000;
-            width: 90%;
-            max-width: 380px;
-            padding: 32px;
-            border-radius: 2.5rem;
-            background: rgba(15, 15, 15, 0.7);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: none;
-            opacity: 0;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            text-align: center;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -40%);
+            z-index: 2000; width: 90%; max-width: 380px; padding: 32px; border-radius: 2.5rem;
+            background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1); display: none; opacity: 0;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); text-align: center;
         }
-
-        #audioPopup.active {
-            display: block;
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-
-        .popup-btn {
-            padding: 12px 24px;
-            border-radius: 14px;
-            font-size: 11px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
+        #audioPopup.active { display: block; opacity: 1; transform: translate(-50%, -50%); }
+        .popup-btn { padding: 12px 24px; border-radius: 14px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.3s ease; cursor: pointer; }
         .btn-emerald { background: #10b981; color: #000; }
-        .btn-emerald:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2); }
-
         .btn-red { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
-        .btn-red:hover { background: rgba(239, 68, 68, 0.2); transform: translateY(-2px); }
     </style>
 </head>
 <body class="p-6 md:p-16">
 
     <nav class="max-w-6xl mx-auto mb-16">
-        <a href="index.html" class="text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 flex items-center gap-2">
-            <span>←</span> Back to Archive
-        </a>
+        <a href="index.html" class="text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 flex items-center gap-2">← Back</a>
     </nav>
 
     <div id="selection-menu" class="max-w-6xl mx-auto">
-        <header class="mb-20">
-            <h1 class="text-5xl font-black tracking-tighter uppercase mb-4">Select <span class="text-emerald-500">Path.</span></h1>
-            <p class="opacity-40 text-sm tracking-widest uppercase">Curated roadmaps for the modern seeker</p>
-        </header>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div onclick="showLevels()" class="glass p-12 rounded-[3rem] cursor-pointer group relative overflow-hidden h-80 flex flex-col justify-between">
-                <div class="text-emerald-500 opacity-20 group-hover:opacity-100 transition-opacity">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                </div>
-                <div>
-                    <h2 class="text-3xl font-black uppercase tracking-tight mb-2">Islamic Philosophers</h2>
-                    <p class="text-xs opacity-50 uppercase tracking-widest">3 Levels of Mastery • Ghazali to Ibn Sina</p>
-                </div>
-            </div>
-
-            <div class="glass p-12 rounded-[3rem] opacity-30 cursor-not-allowed h-80 flex flex-col justify-center items-center text-center">
-                <h2 class="text-2xl font-black uppercase tracking-[0.3em]">More Coming Soon</h2>
-            </div>
+        <h1 class="text-5xl font-black uppercase mb-4">Select <span class="text-emerald-500">Path.</span></h1>
+        <div class="glass p-12 rounded-[3rem] cursor-pointer h-80 flex flex-col justify-between" onclick="showLevels()">
+            <h2 class="text-3xl font-black uppercase">Islamic Philosophers</h2>
+            <p class="text-xs opacity-50 uppercase tracking-widest">3 Levels of Mastery</p>
         </div>
     </div>
 
     <div id="levels-content" class="hidden-content max-w-5xl mx-auto pt-10">
-        <button onclick="hideLevels()" class="mb-12 text-[10px] font-bold uppercase tracking-widest text-emerald-500 border border-emerald-500/30 px-6 py-2 rounded-full hover:bg-emerald-500 hover:text-black transition-all">
-            ↑ Close Path
-        </button>
-        <h2 class="text-4xl font-black uppercase mb-16 tracking-tighter">Path: <span class="text-emerald-500">Islamic Philosophers</span></h2>
-        <div class="space-y-8">
-            <div class="glass p-8 md:p-12 rounded-[2.5rem] border-l-4 border-emerald-500">
-                <span class="level-badge bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 mb-6 inline-block">🔰 Beginner</span>
-                <ul class="space-y-4 font-bold text-lg">
-                    <li>1. Ghazali – Deliverance from Error</li>
-                    <li>2. Ghazali – Beginning of Guidance</li>
-                    <li>3. Shah Waliullah – Hujjat Allah al-Baligha</li>
-                </ul>
-            </div>
-            <div class="glass p-8 md:p-12 rounded-[2.5rem] border-l-4 border-amber-500">
-                <span class="level-badge bg-amber-500/10 text-amber-500 border border-amber-500/20 mb-6 inline-block">⚙️ Intermediate</span>
-                <ul class="space-y-4 font-bold text-lg">
-                    <li>1. Ghazali – Moderation in Belief</li>
-                    <li>2. Ibn Taymiyyah – Refutation of the Logicians</li>
-                    <li>3. Selected Ihya</li>
-                </ul>
-            </div>
-            <div class="glass p-8 md:p-12 rounded-[2.5rem] border-l-4 border-violet-500">
-                <span class="level-badge bg-violet-500/10 text-violet-400 border border-violet-500/20 mb-6 inline-block">🧠 Advanced</span>
-                <ul class="space-y-4 font-bold text-lg">
-                    <li>1. Ibn Sina – Metaphysics</li>
-                    <li>2. Ibn Rushd – Incoherence of the Incoherence</li>
-                    <li>3. Fakhr al-Din al-Razi</li>
-                </ul>
-            </div>
+        <button onclick="hideLevels()" class="mb-12 text-[10px] font-bold border border-emerald-500/30 px-6 py-2 rounded-full">↑ Close Path</button>
+        <div class="glass p-10 rounded-[2.5rem] border-l-4 border-emerald-500">
+            <h3 class="font-black text-xl mb-4">Beginner</h3>
+            <p class="opacity-60">Ghazali – Deliverance from Error...</p>
         </div>
     </div>
 
     <div id="audioPopup">
-        <h3 class="text-xl font-black tracking-tight mb-2">Take 3 minutes. Listen.</h3>
-        <p class="text-xs opacity-50 mb-8 uppercase tracking-widest font-bold">A message worth your attention.</p>
+        <h3 class="text-xl font-black mb-2">Take 3 minutes. Listen.</h3>
+        <p class="text-xs opacity-50 mb-8 uppercase font-bold tracking-widest">A message worth your attention.</p>
         <div class="flex justify-center gap-4">
             <button id="listenBtn" class="popup-btn btn-emerald">▶ Listen</button>
             <button id="ignoreBtn" class="popup-btn btn-red">Ignore</button>
         </div>
+        <p id="audioStatus" class="text-[9px] opacity-30 mt-4 uppercase tracking-tighter">Ready</p>
     </div>
 
-    <audio id="modudiAudio" src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/modudi.mp3.mpeg" crossorigin="anonymous"></audio>
+    <audio id="modudiAudio" preload="auto" crossorigin="anonymous">
+        <source src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/modudi.mp3.mpeg" type="audio/mpeg">
+    </audio>
 
     <script>
-        const selectionMenu = document.getElementById('selection-menu');
-        const levelsContent = document.getElementById('levels-content');
         const audioPopup = document.getElementById('audioPopup');
-        const modudiAudio = document.getElementById('modudiAudio');
-        const listenBtn = document.getElementById('listenBtn');
-        const ignoreBtn = document.getElementById('ignoreBtn');
+        const audio = document.getElementById('modudiAudio');
+        const status = document.getElementById('audioStatus');
 
-        function showLevels() {
-            selectionMenu.style.display = 'none';
-            levelsContent.classList.add('show-content');
-            window.scrollTo(0, 0);
+        function showLevels() { 
+            document.getElementById('selection-menu').style.display = 'none'; 
+            document.getElementById('levels-content').classList.add('show-content'); 
+        }
+        function hideLevels() { 
+            document.getElementById('selection-menu').style.display = 'block'; 
+            document.getElementById('levels-content').classList.remove('show-content'); 
         }
 
-        function hideLevels() {
-            selectionMenu.style.display = 'block';
-            levelsContent.classList.remove('show-content');
-        }
-
+        // Show popup after 2 seconds
         window.addEventListener('load', () => {
             setTimeout(() => {
                 audioPopup.style.display = 'block';
-                setTimeout(() => {
-                    audioPopup.classList.add('active');
-                }, 50);
+                setTimeout(() => audioPopup.classList.add('active'), 50);
             }, 2000);
         });
 
-        listenBtn.addEventListener('click', () => {
-            modudiAudio.play().then(() => {
-                console.log("Audio playing");
-            }).catch(e => {
-                console.error("Audio failed:", e);
+        // Listen Button
+        document.getElementById('listenBtn').addEventListener('click', () => {
+            status.textContent = "Attempting to play...";
+            
+            // Re-assign src if it somehow lost it
+            if(!audio.src) audio.src = "https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/modudi.mp3.mpeg";
+            
+            audio.play().then(() => {
+                console.log("Success!");
+                closePopup();
+            }).catch(err => {
+                console.error("Playback error:", err);
+                status.textContent = "Error: Browser blocked playback.";
+                // Don't close popup so user can see the error
             });
-            closePopup();
         });
 
-        ignoreBtn.addEventListener('click', closePopup);
+        document.getElementById('ignoreBtn').addEventListener('click', closePopup);
 
         function closePopup() {
             audioPopup.classList.remove('active');
-            setTimeout(() => {
-                audioPopup.style.display = 'none';
-            }, 600);
+            setTimeout(() => audioPopup.style.display = 'none', 600);
         }
     </script>
 </body>
