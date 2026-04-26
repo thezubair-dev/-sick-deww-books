@@ -14,37 +14,68 @@
         .show-content { display: block; opacity: 1; transform: translateY(0); }
         .level-badge { font-size: 10px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 99px; }
 
-        /* Floating Stop Button */
-        #stopAudioBtn {
+        /* Updated Stop Button Styles */
+        .stop-btn-container {
             position: fixed;
-            top: 24px;
-            right: 24px;
-            z-index: 100;
-            padding: 10px 20px;
-            border-radius: 99px;
-            font-[900] text-[10px] uppercase tracking-widest;
-            display: none; /* Hidden until audio starts */
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            top: 30px;
+            right: 30px;
+            z-index: 9999;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
         }
-        #stopAudioBtn:hover {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: #ef4444;
+
+        .stop-btn-active {
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        .stop-btn-ui {
+            padding: 12px 20px;
+            border-radius: 99px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            background: rgba(239, 68, 68, 0.1);
             color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .stop-btn-ui:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ef4444;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
         }
     </style>
 </head>
 <body class="p-6 md:p-16">
 
-    <button id="stopAudioBtn" onclick="stopMusic()">
-        <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-        Stop Audio
-    </button>
+    <div id="stopContainer" class="stop-btn-container">
+        <button onclick="stopMusic()" class="stop-btn-ui">
+            <div class="pulse-dot"></div>
+            Stop Audio
+        </button>
+    </div>
 
     <nav class="max-w-6xl mx-auto mb-16">
         <a href="index.html" class="text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 flex items-center gap-2">
@@ -61,15 +92,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div onclick="startJourney()" class="glass p-12 rounded-[3rem] cursor-pointer group relative overflow-hidden h-80 flex flex-col justify-between">
                 <div class="text-emerald-500 opacity-20 group-hover:opacity-100 transition-opacity">
-                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
+                    <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                 </div>
                 <div>
                     <h2 class="text-3xl font-black uppercase tracking-tight mb-2">Islamic Philosophers</h2>
                     <p class="text-xs opacity-50 uppercase tracking-widest">3 Levels of Mastery • Ghazali to Ibn Sina</p>
                 </div>
-                <div class="absolute top-8 right-8 text-[10px] font-black uppercase opacity-20 group-hover:opacity-100 tracking-[0.2em]">Start Journey</div>
             </div>
 
             <div class="glass p-12 rounded-[3rem] opacity-30 cursor-not-allowed h-80 flex items-center justify-center">
@@ -79,11 +107,9 @@
     </div>
 
     <div id="levels-content" class="hidden-content max-w-5xl mx-auto pt-10">
-        <div class="flex justify-between items-center mb-12">
-            <button onclick="hideLevels()" class="text-[10px] font-bold uppercase tracking-widest text-emerald-500 border border-emerald-500/30 px-6 py-2 rounded-full hover:bg-emerald-500 hover:text-black transition-all">
-                ↑ Close Path
-            </button>
-        </div>
+        <button onclick="hideLevels()" class="mb-12 text-[10px] font-bold uppercase tracking-widest text-emerald-500 border border-emerald-500/30 px-6 py-2 rounded-full hover:bg-emerald-500 hover:text-black transition-all">
+            ↑ Close Path
+        </button>
 
         <h2 class="text-4xl font-black uppercase mb-16 tracking-tighter">Path: <span class="text-emerald-500">Islamic Philosophers</span></h2>
 
@@ -107,16 +133,18 @@
         const audio = document.getElementById('modudiAudio');
         const selectionMenu = document.getElementById('selection-menu');
         const levelsContent = document.getElementById('levels-content');
-        const stopBtn = document.getElementById('stopAudioBtn');
+        const stopContainer = document.getElementById('stopContainer');
 
         function startJourney() {
-            // Start Audio
+            // Attempt to play audio
             audio.play().then(() => {
-                // Show the stop button only after audio starts successfully
-                stopBtn.style.display = 'flex';
-            }).catch(e => console.log("Audio play failed:", e));
+                // Show stop button only if audio actually starts
+                stopContainer.classList.add('stop-btn-active');
+            }).catch(e => {
+                console.log("Audio failed to play:", e);
+            });
 
-            // Change View
+            // Transition UI
             selectionMenu.style.display = 'none';
             levelsContent.classList.add('show-content');
             window.scrollTo(0, 0);
@@ -124,8 +152,9 @@
 
         function stopMusic() {
             audio.pause();
-            audio.currentTime = 0; // Resets to beginning
-            stopBtn.style.display = 'none'; // Hide button again
+            audio.currentTime = 0;
+            // Hide stop button
+            stopContainer.classList.remove('stop-btn-active');
         }
 
         function hideLevels() {
@@ -135,6 +164,5 @@
 
         window.addEventListener('load', () => { audio.load(); });
     </script>
-
 </body>
 </html>
