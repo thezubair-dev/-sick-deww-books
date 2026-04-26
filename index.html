@@ -3,164 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>By ZUBAIR | Home</title>
+    <title>By ZUBAIR | Exclusive Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:italic&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: radial-gradient(circle at top right, #064e3b 0%, #0a0a0a 45%); 
-            background-color: #0a0a0a; 
-            color: white; 
-            min-height: 100vh; 
+        :root {
+            --bg-dark: #0a0a0a;
+            --emerald-glow: #064e3b;
+            --emerald-bright: #10b981;
         }
-        .glass { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background: radial-gradient(circle at top right, var(--emerald-glow) 0%, var(--bg-dark) 50%);
+            color: white;
+            overflow-x: hidden;
         }
-        .nav-card:hover {
-            background: rgba(16, 185, 129, 0.1);
-            border-color: rgba(16, 185, 129, 0.4);
-            transform: translateY(-2px);
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .hover-scale { 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .streaming-card {
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            mask-image: -webkit-radial-gradient(white, black);
         }
-        .hover-scale:hover { 
-            transform: translateY(-5px); 
-            border-color: rgba(16, 185, 129, 0.5); 
+
+        .streaming-card:hover {
+            transform: scale(1.08);
+            z-index: 50;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(16, 185, 129, 0.15);
+        }
+
+        .book-container {
+            padding: 40px 60px;
+            margin-left: -60px;
+            margin-right: -60px;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 110;
+        }
+
+        .nav-btn:hover {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--emerald-bright);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
         }
     </style>
 </head>
-<body class="p-6 md:p-8">
+<body class="selection:bg-emerald-500 selection:text-black">
 
-    <nav class="flex flex-row justify-between items-center mb-16 max-w-6xl mx-auto">
+    <nav class="fixed top-0 w-full z-[100] px-6 py-5 flex justify-between items-center bg-gradient-to-b from-black/90 to-transparent backdrop-blur-sm">
         <h1 class="text-xl font-black tracking-tighter uppercase border-b-2 border-emerald-500 pb-0.5">By ZUBAIR.</h1>
-        
-        <div class="flex items-center gap-3">
-            <a href="guides.html" class="glass px-5 py-2.5 rounded-full flex items-center gap-2 group nav-card transition-all">
-                <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-                <span class="text-[9px] uppercase tracking-widest font-black">Reading Guides</span>
+        <div class="flex gap-4">
+            <a href="guides.html" class="nav-btn glass px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M11 18l-2-1-5 3V7l5-3 6 3 5-3v13l-5 3-2-1"></path><polyline points="9 10 9 21"></polyline><polyline points="15 3 15 14"></polyline></svg>
+                Paths
             </a>
-            
-            <a href="trends.html" class="glass px-5 py-2.5 rounded-full flex items-center gap-2 group nav-card transition-all">
-                <div class="w-1.5 h-1.5 rounded-full bg-amber-500"></div>
-                <span class="text-[9px] uppercase tracking-widest font-black">Ummah Trends</span>
+            <a href="trends.html" class="nav-btn glass px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest border-emerald-500/30 text-emerald-400">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>
+                Trends
             </a>
         </div>
     </nav>
 
-    <section class="max-w-3xl mx-auto mb-20 text-center">
-        <p class="font-serif text-3xl md:text-4xl italic text-white leading-snug mb-4">
-            "The heart is like a vessel: if you do not fill it with truth, it will be filled with falsehood."
-        </p>
-        <p class="text-emerald-500 uppercase tracking-widest text-[10px] font-bold">— Ibn al-Qayyim</p>
+    <header class="h-[60vh] flex flex-col justify-center items-center text-center px-6">
+        <div class="z-20 max-w-3xl">
+            <p class="font-serif text-3xl md:text-5xl italic text-white leading-tight mb-8">
+                "The heart is like a vessel: if you do not fill it with truth, it will be filled with falsehood."
+            </p>
+            <div class="flex items-center justify-center gap-4">
+                <span class="h-[1px] w-8 bg-emerald-500/50"></span>
+                <p class="text-emerald-500 uppercase tracking-[0.5em] text-[10px] font-black">Ibn al-Qayyim</p>
+                <span class="h-[1px] w-8 bg-emerald-500/50"></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="px-6 md:px-16 mb-20 overflow-visible relative z-30">
+        <h3 class="text-[11px] uppercase tracking-[0.4em] font-black text-emerald-500 mb-2 flex items-center gap-3">
+            My Books <span class="h-[2px] w-12 bg-emerald-500/20"></span>
+        </h3>
+        
+        <div class="flex overflow-x-auto gap-8 no-scrollbar book-container">
+            
+            <div class="streaming-card glass flex-shrink-0 w-44 md:w-52 rounded-[1.8rem] p-4 group cursor-pointer border-t border-emerald-500/30">
+                <div class="aspect-[3/4] rounded-xl overflow-hidden mb-3 shadow-xl">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/qos.jpeg" class="w-full h-full object-cover">
+                </div>
+                <h4 class="text-[11px] font-black uppercase truncate mb-1">Quran of Shaytan</h4>
+                <p class="text-[8px] opacity-40 uppercase mb-2 tracking-tighter">Side effects of music</p>
+                <a href="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/qos.pdf" target="_blank" class="text-[8px] font-black uppercase text-emerald-400 inline-block border border-emerald-500/20 px-2 py-1 rounded-md">Read Now</a>
+            </div>
+
+            <div class="streaming-card glass flex-shrink-0 w-44 md:w-52 rounded-[1.8rem] p-4 group cursor-default border-t border-white/5">
+                <div class="aspect-[3/4] rounded-xl overflow-hidden mb-3 relative">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/mkb.jpeg" class="w-full h-full object-cover">
+                    <div class="absolute top-3 right-3">
+                         <span class="bg-emerald-500 text-black text-[7px] font-black px-2 py-1 rounded-full uppercase tracking-widest shadow-lg">Soon</span>
+                    </div>
+                </div>
+                <h4 class="text-[11px] font-black uppercase truncate mb-1">Muskan Kyu Baagi</h4>
+                <p class="text-[8px] opacity-40 uppercase tracking-tighter">Haram relationship, society & islam</p>
+            </div>
+
+            <div class="streaming-card glass flex-shrink-0 w-44 md:w-52 rounded-[1.8rem] p-4 group cursor-default border-t border-white/5">
+                <div class="aspect-[3/4] rounded-xl overflow-hidden mb-3 relative">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/ltz.jpeg" class="w-full h-full object-cover">
+                    <div class="absolute top-3 right-3">
+                         <span class="bg-emerald-500 text-black text-[7px] font-black px-2 py-1 rounded-full uppercase tracking-widest shadow-lg">Soon</span>
+                    </div>
+                </div>
+                <h4 class="text-[11px] font-black uppercase truncate mb-1">Let's Talk Zubair</h4>
+                <p class="text-[8px] opacity-40 uppercase tracking-tighter">A piece of advice to younger me</p>
+            </div>
+        </div>
     </section>
 
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
-        <div class="glass p-5 rounded-[1.5rem] hover-scale border-t-2 border-emerald-500 flex flex-row items-center gap-6">
-            <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/qos.jpeg" alt="QOS" class="h-32 w-24 object-contain rounded shadow-xl">
-            <div class="flex-1">
-                <h2 class="text-xl font-extrabold mb-1">Quran of Shaytan</h2>
-                <p class="opacity-40 text-[10px] mb-4 uppercase tracking-wider">Addressing Misconceptions</p>
-                <a href="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/qos.pdf" target="_blank" class="inline-block bg-white text-black px-4 py-2 rounded-lg font-black uppercase text-[9px] tracking-widest hover:bg-emerald-400 transition-colors">Read</a>
-            </div>
-        </div>
+    <section class="px-6 md:px-16 mb-24 relative z-30">
+        <h3 class="text-[11px] uppercase tracking-[0.4em] font-black text-emerald-500 mb-8 flex items-center gap-3">
+            Content <span class="h-[2px] w-12 bg-emerald-500/20"></span>
+        </h3>
 
-        <div class="glass p-5 rounded-[1.5rem] hover-scale border-t-2 border-amber-600 flex flex-row items-center gap-6">
-            <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/mkb.jpeg" alt="MKB" class="h-32 w-24 object-contain rounded shadow-xl opacity-50">
-            <div class="flex-1">
-                <h2 class="text-xl font-extrabold mb-1">Muskan Kyu Baagi</h2>
-                <p class="opacity-40 text-[10px] mb-4 uppercase tracking-wider">Social Politics</p>
-                <span class="inline-block bg-white/10 text-white/40 px-4 py-2 rounded-lg font-black uppercase text-[9px] tracking-widest cursor-not-allowed">Soon</span>
-            </div>
-        </div>
-    </div>
-
-    <section class="max-w-5xl mx-auto mb-24">
-        <h3 class="text-[10px] uppercase tracking-[0.4em] font-black opacity-30 mb-8 text-center">Exclusive Content</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             
-            <div onclick="alert('This content is currently locked.')" class="glass p-4 rounded-[2rem] hover-scale cursor-pointer group">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-4">
-                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/insta.jpeg" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 transition-all duration-500">
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                    </div>
-                </div>
-                <h4 class="text-sm font-bold px-2 leading-tight">Why I don't use Instagram</h4>
-                <p class="text-[9px] px-2 opacity-30 mt-1 uppercase tracking-tighter">Locked</p>
-            </div>
-
-            <div onclick="alert('This content is currently locked.')" class="glass p-4 rounded-[2rem] hover-scale cursor-pointer group">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-4">
-                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/body.jpeg" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 transition-all duration-500">
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                    </div>
-                </div>
-                <h4 class="text-sm font-bold px-2 leading-tight">I don’t chase bodies, I look for brains</h4>
-                <p class="text-[9px] px-2 opacity-30 mt-1 uppercase tracking-tighter">Locked</p>
-            </div>
-
-            <a href="https://youtu.be/51moyhXVRKY?si=UAeOdAZ_A-IrnD8E" target="_blank" class="glass p-4 rounded-[2rem] hover-scale cursor-pointer group">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-4 border-2 border-emerald-500/20 group-hover:border-emerald-500/50 transition-all">
+            <a href="https://youtu.be/51moyhXVRKY" target="_blank" class="streaming-card glass rounded-[2.2rem] overflow-hidden group p-2 ring-1 ring-emerald-500/10">
+                <div class="relative aspect-video rounded-[1.8rem] overflow-hidden">
                     <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/mirza.jpeg" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-emerald-950/40 flex items-center justify-center transition-all">
-                        <span class="opacity-0 group-hover:opacity-100 bg-white text-black text-[10px] font-black uppercase py-2 px-4 rounded-full tracking-widest transition-all translate-y-2 group-hover:translate-y-0">Watch Trailer</span>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all">
+                         <div class="bg-white text-black text-[9px] font-black uppercase py-2.5 px-5 rounded-full tracking-widest">Watch Trailer</div>
                     </div>
                 </div>
-                <h4 class="text-sm font-bold px-2 leading-tight group-hover:text-emerald-400 transition-colors">My views on Engineer Muhammad Ali Mirza</h4>
-                <p class="text-[9px] px-2 text-emerald-500 mt-1 uppercase tracking-widest font-black">Available</p>
+                <div class="p-4">
+                    <h4 class="text-sm font-black group-hover:text-emerald-400 transition-colors uppercase tracking-tight">My views on Engineer Muhammad Ali Mirza</h4>
+                </div>
             </a>
 
-            <div onclick="alert('This content is currently locked.')" class="glass p-4 rounded-[2rem] hover-scale cursor-pointer group">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-4">
-                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/music.jpeg" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 transition-all duration-500">
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
+            <div onclick="alert('Locked')" class="streaming-card glass rounded-[2.2rem] overflow-hidden group cursor-pointer p-2">
+                <div class="relative aspect-video rounded-[1.8rem] overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/insta.jpeg" class="w-full h-full object-cover opacity-50 grayscale">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                     </div>
                 </div>
-                <h4 class="text-sm font-bold px-2 leading-tight">How music is slowly poisoning you</h4>
-                <p class="text-[9px] px-2 opacity-30 mt-1 uppercase tracking-tighter">Locked</p>
+                <div class="p-4"><h4 class="text-sm font-black opacity-30 uppercase tracking-tight">Why I don't use Instagram</h4></div>
             </div>
 
-            <div onclick="alert('This content is currently locked.')" class="glass p-4 rounded-[2rem] hover-scale cursor-pointer group">
-                <div class="relative aspect-video rounded-2xl overflow-hidden mb-4">
-                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/tier.jpeg" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-100 transition-all duration-500">
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
+            <div onclick="alert('Locked')" class="streaming-card glass rounded-[2.2rem] overflow-hidden group cursor-pointer p-2">
+                <div class="relative aspect-video rounded-[1.8rem] overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/body.jpeg" class="w-full h-full object-cover opacity-50 grayscale">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                     </div>
                 </div>
-                <h4 class="text-sm font-bold px-2 leading-tight">Making a viral tier list of scholars</h4>
-                <p class="text-[9px] px-2 opacity-30 mt-1 uppercase tracking-tighter">Locked</p>
+                <div class="p-4"><h4 class="text-sm font-black opacity-30 uppercase tracking-tight">I don’t chase bodies, I look for brains</h4></div>
             </div>
 
+            <div onclick="alert('Locked')" class="streaming-card glass rounded-[2.2rem] overflow-hidden group cursor-pointer p-2">
+                <div class="relative aspect-video rounded-[1.8rem] overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/music.jpeg" class="w-full h-full object-cover opacity-50 grayscale">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    </div>
+                </div>
+                <div class="p-4"><h4 class="text-sm font-black opacity-30 uppercase tracking-tight">How music is slowly poisoning you</h4></div>
+            </div>
+
+            <div onclick="alert('Locked')" class="streaming-card glass rounded-[2.2rem] overflow-hidden group cursor-pointer p-2">
+                <div class="relative aspect-video rounded-[1.8rem] overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/thezubair-dev/-sick-deww-books/main/tier.jpeg" class="w-full h-full object-cover opacity-50 grayscale">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    </div>
+                </div>
+                <div class="p-4"><h4 class="text-sm font-black opacity-30 uppercase tracking-tight">Making a viral tier list of scholars</h4></div>
+            </div>
         </div>
     </section>
 
-    <section class="max-w-xl mx-auto mb-24">
-        <div class="glass p-6 rounded-[1.5rem] border-l-2 border-emerald-500">
-            <h2 class="text-lg font-black uppercase tracking-tighter">Speak.</h2>
-            <p class="text-[9px] uppercase tracking-widest opacity-40 mb-4">100% Anonymous</p>
+    <section class="max-w-xl mx-auto px-6 mb-32 relative z-30">
+        <div class="glass p-8 rounded-[2.5rem] border-l-2 border-emerald-500">
+            <h2 class="text-xl font-black uppercase tracking-tighter mb-1">Speak.</h2>
+            <p class="text-[8px] uppercase tracking-[0.3em] text-emerald-500 font-bold mb-6">100% Anonymous</p>
+            
             <form action="https://formspree.io/f/xgorbwrr" method="POST" class="space-y-3">
-                <textarea name="message" rows="2" required placeholder="Drop a thought..." class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-xs focus:outline-none focus:border-emerald-500 transition-colors resize-none text-white"></textarea>
-                <button type="submit" class="w-full bg-emerald-500 text-black font-black uppercase text-[9px] tracking-widest py-3 rounded-xl hover:bg-emerald-400 transition-all">Send</button>
+                <textarea name="message" rows="2" required placeholder="Thought..." 
+                    class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-xs focus:outline-none focus:border-emerald-500 transition-all text-white placeholder:opacity-20"></textarea>
+                <button type="submit" 
+                    class="w-full bg-emerald-500 text-black font-black uppercase text-[10px] tracking-widest py-3 rounded-xl hover:bg-emerald-400 transition-all">
+                    Send
+                </button>
             </form>
         </div>
     </section>
 
-    <footer class="text-center py-8 border-t border-white/5">
-        <a href="https://www.youtube.com/@sickdeww" target="_blank" class="text-[9px] tracking-widest uppercase font-bold opacity-30 hover:opacity-100 transition-all">@sickdeww</a>
+    <footer class="py-12 text-center border-t border-white/5">
+        <a href="https://www.youtube.com/@sickdeww" target="_blank" class="text-[9px] tracking-widest uppercase font-bold opacity-20 hover:opacity-100 transition-all">@sickdeww</a>
     </footer>
 
 </body>
